@@ -17,16 +17,27 @@ function App() {
     return [colorOne, colorTwo];
   };
 
-  const randomDirection = () => Math.floor(Math.random() * 201);
+  const randomRotation = () => Math.floor(Math.random() * 201);
 
-  console.log(randomColors());
+  const randomDirection = () => {
+    const classToAdd = [
+      "rotateLinearCircleClockwise",
+      "rotateLinearCircleAnticlockwise",
+    ];
+
+    return classToAdd[Math.floor(Math.random() * randomDirection.length)];
+  };
 
   return (
     <div className="App">
       <h4>music.</h4>
       <div className="linearCirclesContainer">
         {noOfLinearCircles.map((i) => (
-          <LinearCircle colors={randomColors()} direction={randomDirection()} />
+          <LinearCircle
+            colors={randomColors()}
+            rotation={randomRotation()}
+            direction={randomDirection()}
+          />
         ))}
       </div>
     </div>
