@@ -1,14 +1,11 @@
 import "./index.css";
 import LinearCircle from "./component/LinearCircle";
 import COLORS from "./data/Colors";
+import { useMemo } from "react";
 
 function App() {
-  // 4 circles with different colors which rotate in different directions
-
-  // creat App.js UI
-  // add title
-
-  let noOfLinearCircles = new Array(4).fill(0);
+  const circleCount = 4;
+  const noOfLinearCircles = new Array(circleCount).fill(0);
 
   const randomColors = () => {
     const colorOne = COLORS[Math.floor(Math.random() * COLORS.length)];
@@ -25,18 +22,28 @@ function App() {
       "rotateLinearCircleAnticlockwise",
     ];
 
-    return classToAdd[Math.floor(Math.random() * randomDirection.length)];
+    return classToAdd[Math.floor(Math.random() * classToAdd.length)];
   };
+
+  const circles = useMemo(
+    () =>
+      Array.from({ length: circleCount }, () => ({
+        colors: randomColors(),
+        rotation: randomRotation(),
+        direction: randomDirection(),
+      })),
+    []
+  );
 
   return (
     <div className="App">
       <h4>music.</h4>
       <div className="linearCirclesContainer">
-        {noOfLinearCircles.map((i) => (
+        {circles.map((circle) => (
           <LinearCircle
-            colors={randomColors()}
-            rotation={randomRotation()}
-            direction={randomDirection()}
+            colors={circle.colors}
+            rotation={circle.rotation}
+            direction={circle.direction}
           />
         ))}
       </div>
