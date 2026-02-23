@@ -17,6 +17,8 @@ function App() {
     return [colorOne, colorTwo];
   };
 
+  const randomDirection = () => Math.floor(Math.random() * 201);
+
   console.log(randomColors());
 
   return (
@@ -24,7 +26,7 @@ function App() {
       <h4>music.</h4>
       <div className="linearCirclesContainer">
         {noOfLinearCircles.map((i) => (
-          <LinearCircle colors={randomColors()} />
+          <LinearCircle colors={randomColors()} direction={randomDirection()} />
         ))}
       </div>
     </div>
