@@ -8,16 +8,23 @@ function App() {
   // creat App.js UI
   // add title
 
-  let noOfLinearCircles = new Array(5).fill(0);
+  let noOfLinearCircles = new Array(4).fill(0);
 
-  console.log(noOfLinearCircles);
+  const randomColors = () => {
+    const colorOne = COLORS[Math.floor(Math.random() * COLORS.length)];
+    const colorTwo = COLORS[Math.floor(Math.random() * COLORS.length)];
+
+    return [colorOne, colorTwo];
+  };
+
+  console.log(randomColors());
 
   return (
     <div className="App">
       <h4>music.</h4>
       <div className="linearCirclesContainer">
         {noOfLinearCircles.map((i) => (
-          <LinearCircle />
+          <LinearCircle colors={randomColors()} />
         ))}
       </div>
     </div>
